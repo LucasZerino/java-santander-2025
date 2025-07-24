@@ -58,10 +58,38 @@ public class Main {
     }
 
     private static void finishGame(){
+        if(isNull(board)){
+            System.out.println("O jogo ainda não está iniciado");
+            return;
+        }
 
+        if(board.gameIsFinished()){
+            System.out.println("Parabéns você concluiu o jogo!");
+            showCurrentGame();
+            board = null;
+        } else if (board.hasErrors()) {
+            System.out.println("Seu jogo contém erros, verifique seu board e ajuste-o");
+        }else {
+            System.out.println("Você precisa preencher todos os espaços vazios.");
+        }
     }
 
     private static void clearGame(){
+        if(isNull(board)){
+            System.out.println("O jogo ainda não está iniciado");
+            return;
+        }
+
+        System.out.println("Tem certeza que deseja limpar o seu jogo e perder todo o seu progresso?");
+        var confirm = scanner.next();
+        while(!confirm.equalsIgnoreCase("sim") && !confirm.equalsIgnoreCase("não")){
+            System.out.println("Informe sim ou não");
+            confirm = scanner.next();
+        }
+
+        if(confirm.equalsIgnoreCase("sim")){
+            board.reset();
+        }
 
     }
 
@@ -89,7 +117,7 @@ public class Main {
         var argPos = 0;
         for (int i = 0; i < BOARD_LIMIT; i++) {
             for ( var col: board.getSpaces()){
-                arg[argPos ++] = " " + ((isNull(col.get(i).getActual())) ? " " : col.get(i).getActual());
+                args[argPos ++] = " " + ((isNull(col.get(i).getActual())) ? " " : col.get(i).getActual());
             }
         }
 
@@ -138,9 +166,9 @@ public class Main {
 
         List<List<Space>> spaces = new ArrayList<>();
         for (int i = 0; i < BOARD_LIMIT; i++) {
-            spaces.add(new ArrayList<>();
+            spaces.add(new ArrayList<>());
             for (int j = 0; j < BOARD_LIMIT; j++) {
-                var positionConfig = positions.get("%s, %s".formatted(i,j));
+                var positionConfig = positions.get("%s,%s".formatted(i,j));
                 var expected = Integer.parseInt(positionConfig.split(",")[0]);
                 var fixed = Boolean.parseBoolean(positionConfig.split(",")[1]);
                 var currentSpace = new Space(expected, fixed);
