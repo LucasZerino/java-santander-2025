@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
+import static br.com.dio.util.BoardTemplate.BOARD_TEMPLATE;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static java.util.stream.Collectors.toMap;
@@ -65,11 +66,35 @@ public class Main {
     }
 
     private static void showGameStatus(){
+        if(isNull(board)){
+            System.out.println("O jogo ainda não está iniciado");
+            return;
+        }
 
+        System.out.printf("O jogo se encontra atualmente no status: %s\n", board.getStatus().getLabel());
+        if(board.hasErrors()){
+            System.out.println("O jogo contém erros");
+        }else{
+            System.out.println("O jogo não contém erros");
+        }
     }
 
     private static void showCurrentGame(){
+        if(isNull(board)){
+            System.out.println("O jogo ainda não está iniciado");
+            return;
+        }
 
+        var args = new Object[81];
+        var argPos = 0;
+        for (int i = 0; i < BOARD_LIMIT; i++) {
+            for ( var col: board.getSpaces()){
+                arg[argPos ++] = " " + ((isNull(col.get(i).getActual())) ? " " : col.get(i).getActual());
+            }
+        }
+
+        System.out.println("Seu jogo se encontra da seguinte forma: ");
+        System.out.printf((BOARD_TEMPLATE) + "\n", args);
     }
 
     private static void removeNumber(){
