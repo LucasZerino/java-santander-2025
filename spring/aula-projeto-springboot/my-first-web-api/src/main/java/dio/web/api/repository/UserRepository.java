@@ -39,5 +39,4 @@ public class UserRepository {
         System.out.println(String.format("FIND/username - Recebendo o username: %s para localizar um usuário", username));
         return new Usuario("lucas", "senha");
     }
-
 }
