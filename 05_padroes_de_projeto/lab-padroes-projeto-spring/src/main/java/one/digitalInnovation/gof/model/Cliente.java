@@ -30,6 +30,10 @@ public class Cliente {
         this.nome = nome;
     }
 
+    public void setEndereco(Endereco endereco){
+        this.endereco = endereco;
+    }
+
     public Endereco getEndereco(){
         return endereco;
     }

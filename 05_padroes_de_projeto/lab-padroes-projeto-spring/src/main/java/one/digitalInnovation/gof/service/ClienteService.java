@@ -3,8 +3,8 @@ package one.digitalInnovation.gof.service;
 import one.digitalInnovation.gof.model.Cliente;
 
 public interface ClienteService {
+    
     Iterable<Cliente> buscarTodos();
-    Cliente buscarPorID(Long id);
 
     void inserir ( Cliente cliente);
 
