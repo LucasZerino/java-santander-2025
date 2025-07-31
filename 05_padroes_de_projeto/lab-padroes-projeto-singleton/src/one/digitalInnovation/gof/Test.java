@@ -3,6 +3,7 @@ package one.digitalInnovation.gof;
 import one.digitalInnovation.gof.singleton.SingletonEager;
 import one.digitalInnovation.gof.singleton.SingletonLazy;
 import one.digitalInnovation.gof.singleton.SingletonLazyHolder;
+import one.digitalInnovation.gof.strategy.*;
 
 public class Test {
 
@@ -23,5 +24,20 @@ public class Test {
         System.out.println("Método eager endereço de memória: " + holder);
         holder = SingletonLazyHolder.getInstancia();
         System.out.println("Método eager endereço de memória2: "+ holder);
+
+        //Strategy
+
+        Comportamento normal = new ComportamentoNormal();
+        Comportamento defensivo = new ComportamentoDefensivo();
+        Comportamento agressivo = new ComportamentoAgressivo();
+
+        Robo robo = new Robo();
+        robo.setStrategy(normal);
+
+        robo.mover();
+        robo.setStrategy(defensivo);
+        robo.mover();
+        robo.setStrategy(agressivo);
+        robo.mover();
     }
 }
