@@ -1,11 +1,24 @@
 package me.santander.dev.model;
 
+import jakarta.persistence.*;
+
+@Entity(name = "tb_user")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToOne(cascade = CascadeType.ALL)
     private Account account;
-    private Feature[] features;
+
+    @OneToOne(cascade = CascadeType.ALL)
     private Card card;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Feature[] features;
+
+    @OneToMany(cascade = CascadeType.ALL)
     private News[] news;
 
     public Long getId() {

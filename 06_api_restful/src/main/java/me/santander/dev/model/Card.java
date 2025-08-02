@@ -1,9 +1,18 @@
 package me.santander.dev.model;
 
+import jakarta.persistence.*;
+
+@Entity(name = "tb_card")
 public class Card {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(unique = true)
     private String number;
+
+    @Column(name = "avaliable_limit", scale = 13, precision = 2)
     private Number limit;
 
     public Long getId() {
