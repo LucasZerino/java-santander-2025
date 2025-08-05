@@ -18,3 +18,14 @@ spring:
       settings:
         trace: false
         web-allow-others: false
+
+# Swagger/OpenAPI Configuration
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
+    doc-expansion: none
+  packages-to-scan: me.santander.dev.controller

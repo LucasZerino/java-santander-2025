@@ -3,9 +3,11 @@ package me.santander.dev.service.imp;
 import me.santander.dev.model.User;
 import me.santander.dev.repository.UserRepository;
 import me.santander.dev.service.UserService;
+import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
 
+@Service
 public class UserServiceImp implements UserService {
 
     private final UserRepository userRepository;
